@@ -1,0 +1,25 @@
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Experience from "@/components/Experience";
+import Diferenciais from "@/components/Diferenciais";
+import Season from "@/components/Season";
+import CTA from "@/components/CTA";
+import ScrollFramesSection from "@/components/ScrollFramesSection";
+import Footer from "@/components/Footer";
+
+export default function Home() {
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Experience />
+        <Diferenciais />
+        <Season />
+        <CTA />
+        <ScrollFramesSection />
+      </main>
+      <Footer />
+    </>
+  );
+}

@@ -1,0 +1,101 @@
+.section {
+  padding: var(--section-padding-y) 0 0;
+  background: var(--color-white);
+}
+
+.header {
+  text-align: center;
+  max-width: 32rem;
+  margin: 0 auto 2rem;
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+  line-height: 1.25;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+}
+
+.lead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* Bloco visual — base para animações de fundo futuras */
+.visual {
+  position: relative;
+  margin-top: 2rem;
+  min-height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.visualBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    145deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 50%,
+    #001a3d 100%
+  );
+}
+
+.visualOverlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% 80%, rgba(255,255,255,0.06) 0%, transparent 50%),
+    linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
+}
+
+.visualContent {
+  position: relative;
+  z-index: 1;
+  padding: var(--section-padding-x);
+  text-align: center;
+}
+
+.visualQuote {
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 4.5vw, 2.25rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-white);
+  max-width: 22ch;
+  margin: 0 auto;
+}
+
+@media (min-width: 769px) {
+  .header {
+    margin-bottom: 3rem;
+  }
+
+  .visual {
+    margin-top: 3rem;
+    min-height: 26rem;
+  }
+}
+
+@media (min-width: 901px) {
+  .visual {
+    min-height: 28rem;
+  }
+}
