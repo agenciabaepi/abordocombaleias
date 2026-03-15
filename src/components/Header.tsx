@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
+import Image from "next/image";
 import styles from "./Header.module.css";
+import logoImg from "@/assets/logo.png";
 
 const NAV_LINKS: Array<{ href: string; label: string; cta?: boolean }> = [
   { href: "#experiencia", label: "Experiência" },
@@ -75,10 +77,13 @@ export default function Header() {
           onClick={closeMenu}
           aria-label="Abordo com Baleias - início"
         >
-          <img
-            src="/imagens/logo.png"
+          <Image
+            src={logoImg}
             alt="Abordo com Baleias"
             className={styles.logoImg}
+            width={160}
+            height={48}
+            priority
           />
         </a>
         <nav className={styles.nav} aria-label="Navegação principal">
