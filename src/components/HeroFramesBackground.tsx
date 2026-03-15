@@ -5,8 +5,8 @@ import styles from "./HeroFramesBackground.module.css";
 
 // Mesma sequência: 1_00000 … 1_00263 (264 frames)
 const TOTAL_FRAMES = 264;
-const FPS_DESKTOP = 20;
-const FPS_MOBILE = 10;
+const FPS_DESKTOP = 30;
+const FPS_MOBILE = 30;
 const MOBILE_BREAKPOINT = 768;
 const FRAME_PREFIX = "1_";
 
