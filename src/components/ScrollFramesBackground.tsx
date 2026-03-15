@@ -14,8 +14,9 @@ function padFrameNum(n: number): string {
   return String(n).padStart(5, "0");
 }
 
+// Rodapé usa a pasta /frames/ (public/frames)
 function getFramePath(index: number, ext: string): string {
-  return `/frame-video/${FRAME_PREFIX}${padFrameNum(index)}${ext}`;
+  return `/frames/${FRAME_PREFIX}${padFrameNum(index)}${ext}`;
 }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
