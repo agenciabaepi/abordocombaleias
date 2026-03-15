@@ -111,25 +111,42 @@
   align-items: center;
   justify-content: center;
   min-height: var(--touch-target);
-  padding: 0.75rem 1.75rem;
+  padding: 15px 40px;
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-white);
-  background: var(--color-primary);
-  border-radius: 4px;
-  transition: background-color var(--duration-s) ease,
-    transform var(--duration-s) var(--ease-out-expo);
+  background: transparent;
+  position: relative;
+  border: 2px solid var(--color-primary);
+  border-radius: 34px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 80px;
+  height: 80px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: var(--color-primary);
+  transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cta:hover::before {
+  scale: 3;
 }
 
 .cta:hover {
-  background: var(--color-primary-light);
   color: var(--color-white);
-  transform: translateY(-2px);
-}
-
-.cta:active {
-  transform: translateY(0);
+  scale: 1.1;
+  box-shadow: 0 0 24px rgba(0, 60, 136, 0.5);
 }
 
 .scrollHint {

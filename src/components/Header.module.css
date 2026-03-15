@@ -5,35 +5,15 @@
   right: 0;
   z-index: 100;
   height: var(--header-height);
-  transition: background-color var(--duration-s) var(--ease-out-quart),
+  transition: transform var(--duration-s) var(--ease-out-quart),
+    background-color var(--duration-s) var(--ease-out-quart),
     box-shadow var(--duration-s) var(--ease-out-quart),
     color var(--duration-s) var(--ease-out-quart);
 }
 
 .header.scrolled {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 var(--color-border);
-}
-
-.header.scrolled .logo,
-.header.scrolled .nav a,
-.header.scrolled .menuButton span {
-  color: var(--color-primary);
-}
-
-.header.scrolled .nav a {
-  color: var(--color-text-muted);
-}
-
-.header.scrolled .nav a:hover,
-.header.scrolled .cta {
-  color: var(--color-primary);
-}
-
-.header.scrolled .menuButton span {
-  background: var(--color-primary);
+  transform: translateY(-100%);
+  pointer-events: none;
 }
 
 .inner {
@@ -75,6 +55,40 @@
   display: flex;
   align-items: center;
   gap: 2.25rem;
+}
+
+.navWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.navWrapper a {
+  position: relative;
+  z-index: 2;
+}
+
+/* Pílula deslizante no hover (desktop) */
+.menuHighlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 1000px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition:
+    transform 0.3s ease,
+    width 0.3s ease,
+    height 0.3s ease,
+    opacity 0.2s ease;
+}
+
+.menuHighlightVisible {
+  opacity: 1;
 }
 
 .nav a {
