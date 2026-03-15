@@ -76,7 +76,7 @@ export default function Header() {
           aria-label="Abordo com Baleias - início"
         >
           <img
-            src="/imagens/LOGO%20BRANCO.png"
+            src="/imagens/logo.png"
             alt="Abordo com Baleias"
             className={styles.logoImg}
           />
