@@ -5,7 +5,9 @@ import styles from "./HeroFramesBackground.module.css";
 
 // Mesma sequência: 1_00000 … 1_00263 (264 frames)
 const TOTAL_FRAMES = 264;
-const FPS = 20;
+const FPS_DESKTOP = 20;
+const FPS_MOBILE = 10;
+const MOBILE_BREAKPOINT = 768;
 const FRAME_PREFIX = "1_";
 
 function padFrameNum(n: number): string {
@@ -69,6 +71,7 @@ export default function HeroFramesBackground() {
   const imagesRef = useRef<(HTMLImageElement | null)[] | null>(null);
   const startTimeRef = useRef<number | null>(null);
   const rafRef = useRef<number | null>(null);
+  const lastFrameIndexRef = useRef<number>(-1);
   const [ready, setReady] = useState(false);
 
   // Carrega frame 0 primeiro (.webp ou .png); depois o restante em background
@@ -103,10 +106,14 @@ export default function HeroFramesBackground() {
     const images = imagesRef.current;
     if (!canvas || !images) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const w = wrapperRef.current?.clientWidth ?? window.innerWidth;
     const h = wrapperRef.current?.clientHeight ?? window.innerHeight;
     if (w <= 0 || h <= 0) return;
+
+    const isMobile = w < MOBILE_BREAKPOINT;
+    const fps = isMobile ? FPS_MOBILE : FPS_DESKTOP;
+    // Mobile: canvas 1x (menos pixels). Desktop: até 2x para telas retina
+    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
 
     const displayW = Math.round(w * dpr);
     const displayH = Math.round(h * dpr);
@@ -114,6 +121,7 @@ export default function HeroFramesBackground() {
     if (canvas.width !== displayW || canvas.height !== displayH) {
       canvas.width = displayW;
       canvas.height = displayH;
+      lastFrameIndexRef.current = -1;
     }
 
     const ctx = canvas.getContext("2d", { alpha: false });
@@ -122,13 +130,17 @@ export default function HeroFramesBackground() {
     const now = performance.now();
     if (startTimeRef.current == null) startTimeRef.current = now;
     const elapsed = (now - startTimeRef.current) / 1000;
-    const frameDuration = 1 / FPS;
+    const frameDuration = 1 / fps;
     const loopDuration = TOTAL_FRAMES * frameDuration;
     const loopTime = elapsed % loopDuration;
     const frameIndex = Math.min(
       Math.floor(loopTime / frameDuration),
       TOTAL_FRAMES - 1
     );
+
+    // Mobile: só redesenha quando muda o frame (menos CPU)
+    if (isMobile && frameIndex === lastFrameIndexRef.current) return;
+    lastFrameIndexRef.current = frameIndex;
 
     const getImg = (index: number): HTMLImageElement | null => {
       let img = images[index] ?? null;
