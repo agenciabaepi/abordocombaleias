@@ -56,7 +56,11 @@ export default function Hero() {
           muted
           loop
           playsInline
+          preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
           aria-hidden
+          onEnded={() => videoRef.current?.play()}
         >
           <source src="/videos/1.mp4" type="video/mp4" />
         </video>

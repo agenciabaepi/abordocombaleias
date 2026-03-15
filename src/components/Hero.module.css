@@ -14,6 +14,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+  contain: layout style paint;
 }
 
 .video {
@@ -22,6 +23,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .videoOverlay {
@@ -159,10 +163,36 @@
 
   .inner {
     padding-top: 0.5rem;
+    text-align: center;
+  }
+
+  .title {
+    text-align: center;
+    font-weight: 800;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .line {
+    margin-left: auto;
+    margin-right: auto;
+    transform-origin: center center;
+  }
+
+  .subtitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .subtitle br {
     display: none;
+  }
+
+  .ctaWrap {
+    display: flex;
+    justify-content: center;
   }
 
   .scrollHint {
