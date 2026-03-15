@@ -75,7 +75,11 @@ export default function Header() {
           onClick={closeMenu}
           aria-label="Abordo com Baleias - início"
         >
-          Abordo com Baleias
+          <img
+            src="/imagens/logo%20branco.png"
+            alt="Abordo com Baleias"
+            className={styles.logoImg}
+          />
         </a>
         <nav className={styles.nav} aria-label="Navegação principal">
           {NAV_LINKS.map(({ href, label, cta }) => (
