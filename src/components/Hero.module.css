@@ -16,14 +16,36 @@
   z-index: 0;
 }
 
-.gradient {
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.videoOverlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     165deg,
-    var(--color-off-white) 0%,
-    var(--color-white) 45%,
-    rgba(255, 255, 255, 0.97) 100%
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.4) 35%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  z-index: 1;
+}
+
+.gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.25) 0%,
+    transparent 30%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 100%
   );
 }
 
@@ -33,11 +55,11 @@
   left: 0;
   right: 0;
   height: 40%;
+  z-index: 2;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    var(--color-primary-soft) 50%,
-    rgba(0, 60, 136, 0.06) 100%
+    rgba(0, 0, 0, 0.15) 100%
   );
   clip-path: ellipse(120% 100% at 50% 100%);
 }
@@ -54,14 +76,15 @@
   font-size: clamp(2.25rem, 9vw, 4.5rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--color-primary);
+  color: var(--color-white);
   max-width: 14ch;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .line {
   width: 4rem;
   height: 3px;
-  background: var(--color-primary);
+  background: var(--color-white);
   margin-top: 1.5rem;
   transform-origin: left center;
 }
@@ -70,8 +93,9 @@
   margin-top: 1.5rem;
   font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.65;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.9);
   max-width: 36ch;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
 }
 
 .ctaWrap {
@@ -96,6 +120,7 @@
 
 .cta:hover {
   background: var(--color-primary-light);
+  color: var(--color-white);
   transform: translateY(-2px);
 }
 
@@ -110,7 +135,7 @@
   transform: translateX(-50%);
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--color-text-soft);
+  color: rgba(255, 255, 255, 0.7);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   animation: fadeInUp 1s ease 1.2s both;
