@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import styles from "./Hero.module.css";
-
-const HERO_VIDEO_SRC = "/videos/1.mp4";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -13,27 +11,10 @@ export default function Hero() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
-  const [videoReady, setVideoReady] = useState(false);
-
-  // Só carrega e dá play no vídeo quando o hero está visível (evita travar a página)
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0].isIntersecting) return;
-        setVideoReady(true);
-      },
-      { threshold: 0.25, rootMargin: "50px" }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
 
   useEffect(() => {
-    if (!videoReady) return;
     videoRef.current?.play().catch(() => {});
-  }, [videoReady]);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -81,9 +62,7 @@ export default function Hero() {
           aria-hidden
           onEnded={() => videoRef.current?.play()}
         >
-          {videoReady && (
-            <source src={HERO_VIDEO_SRC} type="video/mp4" />
-          )}
+          <source src="/videos/1.mp4" type="video/mp4" />
         </video>
         <div className={styles.videoOverlay} aria-hidden />
         <div className={styles.gradient} />
