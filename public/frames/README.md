@@ -1,10 +1,8 @@
-# Frames da animação de background
+# Frames das animações
 
-Os arquivos WebP da sequência ficam nesta pasta:
+Os arquivos WebP ficam na pasta **`public/frame-video`** e são servidos em `/frame-video/`.
 
-- `1_00000.webp`
-- `1_00001.webp`
-- …
-- `1_00199.webp`
+## Rodapé (scroll) e Hero (loop)
 
-O Next.js serve esses arquivos em `/frames/` através do link simbólico `public/frames` → `src/frames`.
+- `1_00000.webp` … `1_00263.webp` (264 frames)
+- Hero e rodapé usam a mesma sequência.

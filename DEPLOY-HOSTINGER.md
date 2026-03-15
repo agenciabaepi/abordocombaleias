@@ -97,3 +97,21 @@ O resultado fica na pasta `.next`. Para a Hostinger no modo estático é preciso
 4. Apontar o domínio para a aplicação.
 
 Se você disser qual plano Hostinger tem (compartilhado, Business, Cloud ou VPS), dá para detalhar só o caminho que se aplica ao seu caso.
+
+---
+
+## 503 Service Unavailable — o que conferir
+
+Se o site abrir em 503 depois de limpar cache ou redeploy:
+
+1. **Start command no painel**  
+   O comando de início deve ser exatamente: **`npm run start`** (o `package.json` já usa `next start -p ${PORT:-3000}` para a porta que a Hostinger define). Não use só `next start` se o painel permitir editar — assim o app usa a porta correta.
+
+2. **Logs do app**  
+   No hPanel → seu site Node.js → **Logs** (ou **Application logs**). Veja se aparece erro de memória (*out of memory*), *crash* ou *port already in use*. Se aparecer, copie a mensagem para ajustar.
+
+3. **Reiniciar e redeploy**  
+   Use **Restart** no app Node.js; se não resolver, faça um **Redeploy** (novo build) e aguarde terminar. Só depois teste de novo o domínio.
+
+4. **Node.js**  
+   Use versão **18**, **20** ou **22** (LTS). Versão muito antiga pode causar falha no build ou no start.

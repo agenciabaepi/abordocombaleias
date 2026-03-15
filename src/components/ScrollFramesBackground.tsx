@@ -7,17 +7,15 @@ import styles from "./ScrollFramesBackground.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TOTAL_FRAMES = 200;
+const TOTAL_FRAMES = 264;
 const FRAME_PREFIX = "1_";
-const FRAME_EXT = ".webp";
 
 function padFrameNum(n: number): string {
   return String(n).padStart(5, "0");
 }
 
-// Carrega de /frames/ — arquivos em public/frames OU public/frames → src/frames (symlink)
-function getFramePath(index: number): string {
-  return `/frames/${FRAME_PREFIX}${padFrameNum(index)}${FRAME_EXT}`;
+function getFramePath(index: number, ext: string): string {
+  return `/frame-video/${FRAME_PREFIX}${padFrameNum(index)}${ext}`;
 }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
@@ -29,23 +27,30 @@ function loadImage(src: string): Promise<HTMLImageElement> {
   });
 }
 
-function loadFramesProgressive(
+async function loadFramesProgressive(
   onFrameLoaded: (index: number, img: HTMLImageElement) => void,
-  onFirstFrameReady: () => void
-): void {
-  let firstShown = false;
-  loadImage(getFramePath(0))
-    .then((img) => {
+  onFirstFrameReady: () => void,
+  onNoFrames: () => void
+): Promise<void> {
+  let ext = ".webp";
+  try {
+    const img = await loadImage(getFramePath(0, ".webp"));
+    onFrameLoaded(0, img);
+    onFirstFrameReady();
+  } catch {
+    try {
+      const img = await loadImage(getFramePath(0, ".png"));
+      ext = ".png";
       onFrameLoaded(0, img);
-      if (!firstShown) {
-        firstShown = true;
-        onFirstFrameReady();
-      }
-    })
-    .catch(() => {});
+      onFirstFrameReady();
+    } catch {
+      onNoFrames();
+      return;
+    }
+  }
   for (let i = 1; i < TOTAL_FRAMES; i++) {
     const index = i;
-    loadImage(getFramePath(index))
+    loadImage(getFramePath(index, ext))
       .then((img) => onFrameLoaded(index, img))
       .catch(() => {});
   }
@@ -100,7 +105,7 @@ export default function ScrollFramesBackground({ variant = "fullpage", triggerRe
       setReady(true);
     };
 
-    loadFramesProgressive(onFrameLoaded, onFirstFrameReady);
+    loadFramesProgressive(onFrameLoaded, onFirstFrameReady, () => setReady(true));
   }, []);
 
   // Redimensionar canvas e desenhar (função estável)

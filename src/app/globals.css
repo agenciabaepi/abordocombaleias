@@ -29,7 +29,7 @@
   --section-padding-y: clamp(3rem, 8vw, 7rem);
   --section-padding-x: clamp(1.25rem, 5vw, 4rem);
   --content-max-width: 72rem;
-  --header-height: 3.5rem;
+  --header-height: 4.25rem;
 
   /* Touch targets (WCAG / Apple HIG: mínimo 44x44px) */
   --touch-target: 44px;
@@ -109,6 +109,6 @@ button {
 /* Desktop: header maior */
 @media (min-width: 769px) {
   :root {
-    --header-height: 4.5rem;
+    --header-height: 5.25rem;
   }
 }

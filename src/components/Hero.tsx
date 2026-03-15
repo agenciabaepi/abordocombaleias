@@ -2,19 +2,15 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import HeroFramesBackground from "./HeroFramesBackground";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    videoRef.current?.play().catch(() => {});
-  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -49,21 +45,7 @@ export default function Hero() {
   return (
     <section ref={containerRef} className={styles.hero} id="hero">
       <div className={styles.bg}>
-        <video
-          ref={videoRef}
-          className={styles.video}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          disablePictureInPicture
-          disableRemotePlayback
-          aria-hidden
-          onEnded={() => videoRef.current?.play()}
-        >
-          <source src="/videos/1.mp4" type="video/mp4" />
-        </video>
+        <HeroFramesBackground />
         <div className={styles.videoOverlay} aria-hidden />
         <div className={styles.gradient} />
         <div className={styles.wave} aria-hidden />
