@@ -70,7 +70,7 @@ export default function Hero() {
       </div>
       <div className={`section-inner ${styles.inner}`}>
         <h1 ref={titleRef} className={styles.title}>
-          Temporada de Baleias
+          Temporada de Baleias 2026
         </h1>
         <div ref={lineRef} className={styles.line} />
         <p ref={subtitleRef} className={styles.subtitle}>

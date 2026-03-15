@@ -22,6 +22,7 @@
 
   /* Typography */
   --font-heading: "Cormorant Garamond", "Georgia", serif;
+  --font-hero-title: "Sora", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing & layout — mobile-first */
