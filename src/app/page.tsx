@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import HeroMarquee from "@/components/HeroMarquee";
 import Experience from "@/components/Experience";
 import Diferenciais from "@/components/Diferenciais";
 import Season from "@/components/Season";
@@ -13,6 +14,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <HeroMarquee />
         <Experience />
         <Diferenciais />
         <Season />
