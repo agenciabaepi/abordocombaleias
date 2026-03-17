@@ -8,45 +8,19 @@ export default function Experience() {
     <SectionReveal as="section" className={styles.section} id="experiencia">
       <div className="section-inner">
         <div className={styles.grid}>
-          <header className={styles.header}>
-            <span className={styles.label}>A experiência</span>
-            <h2 className={styles.title}>
-              Um encontro único com o oceano
-            </h2>
-            <p className={styles.lead}>
-              Nossos passeios são pensados para quem busca mais do que um tour:
-              uma conexão genuína com a natureza e momentos que ficam na memória.
-            </p>
-          </header>
-          <ul className={styles.list}>
-            <li className={styles.item}>
-              <span className={styles.icon} aria-hidden>
-                —
-              </span>
-              <div>
-                <strong>Embarcação adequada</strong>
-                <p>Conforto e segurança em cada saída ao mar.</p>
-              </div>
-            </li>
-            <li className={styles.item}>
-              <span className={styles.icon} aria-hidden>
-                —
-              </span>
-              <div>
-                <strong>Respeito ao habitat</strong>
-                <p>Práticas responsáveis para preservar as baleias e o ecossistema.</p>
-              </div>
-            </li>
-            <li className={styles.item}>
-              <span className={styles.icon} aria-hidden>
-                —
-              </span>
-              <div>
-                <strong>Equipe especializada</strong>
-                <p>Guias e tripulação com experiência na temporada de baleias.</p>
-              </div>
-            </li>
-          </ul>
+          <div className={styles.media} aria-hidden>
+            <picture>
+              <source media="(min-width: 901px)" srcSet="/imagens/cardbaleiadesktop.png" />
+              <img src="/imagens/cardbaleia.png" alt="" className={styles.image} />
+            </picture>
+          </div>
+          <div className={styles.content}>
+            <div className={styles.ctaWrap}>
+              <a href="#contato" className={styles.cta}>
+                Garantir minha vaga
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </SectionReveal>

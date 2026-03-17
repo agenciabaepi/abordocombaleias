@@ -21,9 +21,9 @@
   --color-text-soft: #8b92a0;
 
   /* Typography */
-  --font-heading: "Cormorant Garamond", "Georgia", serif;
+  --font-heading: "Sora", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-hero-title: "Sora", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Sora", -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Spacing & layout — mobile-first */
   --section-padding-y: clamp(3rem, 8vw, 7rem);
